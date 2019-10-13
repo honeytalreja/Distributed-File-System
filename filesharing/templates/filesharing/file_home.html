@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load staticfiles %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'css/filesharing/style.css' %}">
+
+        <title>Trans Media | Home</title>
+    </head>
+    <body>
+      <header class="header-1">
+
+        <div class="header__text-box">
+          <h1 class="heading-primary-1">
+            <span class="heading-primary--main">transfer files</span>
+            <span class="heading-primary--sub">at your fingertips</span>
+          </h1>
+
+        </div>
+
+        <div class="header__btn-box-1">
+          <form method="post" action="{% url 'filesharing:download' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--brown btn--animated" value="Download">Download</button>
+            <!-- <a href="" class="btn btn--brown btn--animated">Download</a> -->
+          </form>
+        </div>
+
+        <div class="header__btn-box-2">
+          <form method="post" action="{% url 'filesharing:upload' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn--brown btn--animated" value="Upload">Upload</button>
+            <!-- <a href="{% url 'filesharing:upload' %}" class="btn btn--brown btn--animated">Upload</a> -->
+          </form>
+        </div>
+      </header>
+    </body>
+</html>
