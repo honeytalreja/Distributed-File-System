@@ -1,7 +1,39 @@
+
 <!DOCTYPE html>
-<html>
-    <title>Distributed File Sharing</title>
+<html lang="en">
+    {% load staticfiles %}
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+        <link rel="stylesheet" href="{% static 'css/filesharing/style.css' %}">
+
+        <title>Trans Media | Music</title>
+    </head>
     <body>
-        <h1>Photos Download</h1>
+      <header class="header-3">
+
+        <div class="header__text-box header__util-1">
+          <h1 class="heading-primary-1 heading-primary-util-1">
+            <span class="heading-primary--main">contents</span>
+          </h1>
+        </div>
+
+        <div class="list-box">
+            {% for item in list_of_file %}
+                <form class="list-item" method="post" action="{% url 'filesharing:download_photos' %}">
+                    {% csrf_token %}
+                    <p class="list-element">{{ item }}</p>
+                    <input type="hidden" name="list_of_files" value={{ file_data }} />
+                    <button type="submit" class="btn--brown btn--animated btn-mini" name="object_id" value={{ item }}>Download</button>
+                    <!-- <a href="#" class="btn--brown btn--animated btn-mini">Download</a> -->
+                </form>
+                <hr>
+            {% endfor %}
+ 
+      </header>
     </body>
 </html>

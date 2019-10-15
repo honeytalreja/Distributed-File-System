@@ -1,11 +1,11 @@
 import socket
 
 MAIN_SERVER_PORT = 1234
-MAIN_SERVER_IP = '192.168.43.20'
+MAIN_SERVER_IP = '192.168.1.5'
 IMAGE_SERVER_PORT = 1235
-IMAGE_SERVER_IP = '192.168.43.243'
+IMAGE_SERVER_IP = '192.168.1.5'
 FILE_SERVER_PORT = 1236
-FILE_SERVER_IP = '192.168.43.243'
+FILE_SERVER_IP = '192.168.1.5'
 
 # DONE
 def connect_to_server(ip_addr, port):
@@ -71,7 +71,6 @@ def main():
     server_socket.listen(5)
     server, addr = server_socket.accept()
     print('Connected to client.')
-    menu = '\nBrowse data:\n1.Images\n2.Files'
 
     while True:
         # server.send(menu.encode())
@@ -80,7 +79,7 @@ def main():
         if choice == 0:
             print('Shutting down the server ..')
             server.close()
-        if choice == 1:
+        elif choice == 1:
             print('Connecting to image server...')
             server_as_client = connect_to_server(IMAGE_SERVER_IP, IMAGE_SERVER_PORT)
             # after making connection loop until client wants to exit

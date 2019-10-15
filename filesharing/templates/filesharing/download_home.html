@@ -26,7 +26,7 @@
         <div class="header__btn-box-1">
           <form method="post" action="{% url 'filesharing:download_music' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn--brown btn--animated" value="Music">Music</button>
+            <button type="submit" class="btn btn--brown btn--animated" name="this_contains" value="Music">Music</button>
             <!-- <a href="{% url 'filesharing:download_music' %}" class="btn btn--brown btn--animated">Music</a> -->
           </form>
         </div>
@@ -34,7 +34,7 @@
         <div class="header__btn-box-2">
           <form method="post" action="{% url 'filesharing:download_photos' %}">
             {% csrf_token %}
-            <button type="submit" class="btn btn--brown btn--animated" value="Photos">Photos</button>
+            <button type="submit" class="btn btn--brown btn--animated" name="this_contains" value="Photo">Photos</button>
             <!-- <a href="{% url 'filesharing:download_photos' %}" class="btn btn--brown btn--animated">Photos</a> -->
           </form>
         </div>

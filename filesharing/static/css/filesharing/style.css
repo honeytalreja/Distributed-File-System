@@ -161,6 +161,20 @@ body {
   transform: translateY(0);
 }
 
+.btn-mini{
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: 1rem 2rem;
+  display: inline-block;
+  border-radius: 10rem;
+  position: relative;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  float: right;
+  margin-top: -0.7rem;
+}
+
 /* ----- INDEX ----- */
 .header {
   height: 100vh;
@@ -203,7 +217,7 @@ body {
   position: relative;
 }
 
-/* ----- PAGE1 + PAGE2 COMMON */
+/* ----- PAGE1 + PAGE2 ----- */
 .heading-primary-1 {
   color: #fff;
   text-transform: uppercase;
@@ -223,4 +237,48 @@ body {
   top: 75%;
   left: 35%;
   transform: translate(-50%, -50%);
+}
+
+
+/* ----- LIST ------ */
+.header-3{
+  height: 100vh;
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../../images/hero4.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.header__util-1{
+  height: 8rem;
+  text-align: center;
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.list-box{
+  /* background-color: white; */
+  background-image: linear-gradient(to right bottom, rgba(255, 255, 255, 0.8), rgba(255, 255,  255, 0.8));
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 50vh;
+  width: 60vw;
+  font-size: 1.6rem;
+  overflow: scroll;
+}
+
+.list-element{
+  display: inline-block;
+}
+
+.list-item{
+  margin: 2rem 6rem;
+}
+
+hr {
+  border-bottom: 1px solid black;
 }
