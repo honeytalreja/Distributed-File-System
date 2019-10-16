@@ -25,7 +25,8 @@ SECRET_KEY = '!y)5*v9+p!zdrh5@=tt-i1-8+6-j_0tw4_0ei+ij_-=7-sxynq'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# Current Server IP and the access client IP
+ALLOWED_HOSTS = ['192.168.43.224', '127.0.0.1', '192.168.43.65', '192.168.0.100', '192.168.0.100']
 
 
 # Application definition
