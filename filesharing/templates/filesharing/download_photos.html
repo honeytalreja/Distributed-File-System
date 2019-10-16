@@ -33,7 +33,14 @@
                 </form>
                 <hr>
             {% endfor %}
- 
+            <form class="list-item" method="post" action="{% url 'filesharing:download_music' %}">
+              {% csrf_token %}
+              <p class="list-element">         </p>
+              <input type="hidden" name="list_of_files" value={{ file_data }} />
+              <button type="submit" class="btn--brown btn--animated btn-mini" name="object_id" value="-1">Exit</button>
+              <!-- <a href="#" class="btn--brown btn--animated btn-mini">Download</a> -->
+            </form>
+            <hr>
       </header>
     </body>
 </html>
