@@ -3,7 +3,7 @@ import os
 import socket
 
 PORT = 1234
-MAIN_SERVER_IP = '192.168.0.102'
+MAIN_SERVER_IP = '192.168.0.100'
 FILEPATH = './'
 CONNECTED_TO_SERVER=False
 client_socket=None
@@ -34,17 +34,17 @@ def download_home(request):
 def download_music(request):
     if request.method == 'POST':
         if request.POST.get("this_contains") == "Music":
-            client_socket.send("1".encode())
+            client_socket.send("2".encode())
             file_data = client_socket.recv(1024).decode()
             list_of_files = file_data.split('**')
 
-            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files, "file_data":file_data})
         elif request.POST.get("object_id"):
-            list_of_files = request.POST.get("list_of_files").split("**")
-            filename=request.POST.get("object_id") #add up
             file_data=request.POST.get("file_data")
+            list_of_files = file_data.split("**")
+            filename=request.POST.get("object_id") #add up
             client_socket.send(filename.encode())
-            if(filename == '-1'):  
+            if(filename == '0'):  
                 return render(request, 'filesharing/download_home.html')
             
             file_pointer = open(filename, 'wb')
@@ -59,7 +59,7 @@ def download_music(request):
             print('Got', filename, 'from server.')
             file_pointer.close()
 
-            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files, "file_data":file_data})
 
     return render(request,'not_found.html')
 
@@ -72,11 +72,11 @@ def download_photos(request):
 
             return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files, "file_data":file_data})
         elif request.POST.get("object_id"):
-            list_of_files = request.POST.get("list_of_files").split("**")
-            filename=request.POST.get("object_id") #add up
             file_data=request.POST.get("file_data")
+            list_of_files = file_data.split("**")
+            filename=request.POST.get("object_id") #add up
             client_socket.send(filename.encode())
-            if(filename == '-1'):
+            if(filename == '0'):
                 return render(request, 'filesharing/download_home.html')
             
             file_pointer = open(filename, 'wb')
