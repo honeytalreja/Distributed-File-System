@@ -1,11 +1,11 @@
 import socket
 
 MAIN_SERVER_PORT = 1234
-MAIN_SERVER_IP = '192.168.0.100'
+MAIN_SERVER_IP = '192.168.43.20'
 IMAGE_SERVER_PORT = 1235
-IMAGE_SERVER_IP = '192.168.0.100'
+IMAGE_SERVER_IP = '192.168.43.20'
 FILE_SERVER_PORT = 1236
-FILE_SERVER_IP = '192.168.0.100'
+FILE_SERVER_IP = '192.168.43.20'
 
 # DONE
 def connect_to_server(ip_addr, port):
@@ -74,8 +74,9 @@ def main():
 
     while True:
         # server.send(menu.encode())
+        print('Want a choice(Image/Music)(1/2)')
         choice = int(server.recv(1024).decode())
-        print('THIS IS THE CHOICE'+str(choice))
+        print('THIS IS THE CHOICE (Image/Music): '+str(choice))
         if choice == 0:
             print('Shutting down the server ..')
             server.close()
@@ -85,17 +86,17 @@ def main():
             # after making connection loop until client wants to exit
             while True:
                 abc='LIST'
-                # print('sfdsf')
                 server_as_client.send(abc.encode())
                 # server_as_client.send('LIST'.encode())
                 filedata = server_as_client.recv(1024).decode()
                 # FILE_SERVER_IP sends filedata as a string concatenated with '**'
                 files = filedata.split('**')
-                print('Images present on Image server:')
-                print(files)
-                for file in files:
-                    print(file)
-                print('Forwarding information to client.')
+                # print('Images present on Image server:')
+                # print(files)
+                # for file in files:
+                    # print(file)
+                # print('Forwarding information to client.')
+                print('Sending List to Client')
                 server.send(filedata.encode())
 
                 client_response = server.recv(1024).decode()
@@ -122,17 +123,17 @@ def main():
 
             while True:
                 abc='LIST'
-                # print('sfdsf')
                 server_as_client.send(abc.encode())
                 # server_as_client.send('LIST'.encode())
                 filedata = server_as_client.recv(1024).decode()
                 # FILE_SERVER_IP sends filedata as a string concatenated with '**'
                 files = filedata.split('**')
-                print('Files present on file server:')
-                print(files)
-                for file in files:
-                    print(file)
-                print('Forwarding information to client.')
+                # print('Files present on file server:')
+                # print(files)
+                # for file in files:
+                #     print(file)
+                # print('Forwarding information to client.')
+                print('sending list to client')
                 server.send(filedata.encode())
                 client_response = server.recv(1024).decode()
                 # if client wants to exit

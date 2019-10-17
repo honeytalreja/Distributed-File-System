@@ -27,7 +27,7 @@
                 <form class="list-item" method="post" action="{% url 'filesharing:download_photos' %}">
                     {% csrf_token %}
                     <p class="list-element">{{ item }}</p>
-                    <input type="hidden" name="file_data" value={{ file_data }} />
+                    <input type="hidden" name="list_of_file" value={{ list_of_file }} />
                     <button type="submit" class="btn--brown btn--animated btn-mini" name="object_id" value={{ item }}>Download</button>
                     <!-- <a href="#" class="btn--brown btn--animated btn-mini">Download</a> -->
                 </form>
@@ -36,7 +36,7 @@
             <form class="list-item" method="post" action="{% url 'filesharing:download_photos' %}">
               {% csrf_token %}
               <p class="list-element">         </p>
-              <input type="hidden" name="file_data" value={{ file_data }} />
+              <input type="hidden" name="list_of_file" value={{ list_of_file }} />
               <button type="submit" class="btn--brown btn--animated btn-mini" name="object_id" value="0">Exit</button>
               <!-- <a href="#" class="btn--brown btn--animated btn-mini">Download</a> -->
             </form>
