@@ -3,8 +3,8 @@ import os
 import socket
 
 PORT = 1234
-MAIN_SERVER_IP = '192.168.0.100'
-FILEPATH = './'
+MAIN_SERVER_IP = '192.168.43.20'
+FILEPATH = './Downloads/'
 CONNECTED_TO_SERVER=False
 client_socket=None
 
@@ -38,16 +38,16 @@ def download_music(request):
             file_data = client_socket.recv(1024).decode()
             list_of_files = file_data.split('**')
 
-            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files})
         elif request.POST.get("object_id"):
-            file_data=request.POST.get("file_data")
-            list_of_files = file_data.split("**")
+            # file_data=request.POST.get("file_data")
+            # list_of_files = request.POST.get("list_of_file")
             filename=request.POST.get("object_id") #add up
             client_socket.send(filename.encode())
             if(filename == '0'):  
                 return render(request, 'filesharing/download_home.html')
             
-            file_pointer = open(filename, 'wb')
+            file_pointer = open(FILEPATH + filename, 'wb')
             filedata = client_socket.recv(1024)
             print('Getting', filename, 'from server...')
             while filedata:
@@ -58,8 +58,10 @@ def download_music(request):
                     break
             print('Got', filename, 'from server.')
             file_pointer.close()
+            file_data = client_socket.recv(1024).decode()
+            list_of_files = file_data.split('**')
 
-            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_music.html',{"list_of_file":list_of_files})
 
     return render(request,'not_found.html')
 
@@ -70,16 +72,16 @@ def download_photos(request):
             file_data = client_socket.recv(1024).decode()
             list_of_files = file_data.split('**')
 
-            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files})
         elif request.POST.get("object_id"):
-            file_data=request.POST.get("file_data")
-            list_of_files = file_data.split("**")
+            # file_data=request.POST.get("file_data")
+            # list_of_files = request.POST.get("list_of_file")
             filename=request.POST.get("object_id") #add up
             client_socket.send(filename.encode())
             if(filename == '0'):
                 return render(request, 'filesharing/download_home.html')
             
-            file_pointer = open(filename, 'wb')
+            file_pointer = open(FILEPATH + filename, 'wb')
             filedata = client_socket.recv(1024)
             print('Getting', filename, 'from server...')
             while filedata:
@@ -90,8 +92,10 @@ def download_photos(request):
                     break
             print('Got', filename, 'from server.')
             file_pointer.close()
+            file_data = client_socket.recv(1024).decode()
+            list_of_files = file_data.split('**')
             
-            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files, "file_data":file_data})
+            return render(request,'filesharing/download_photos.html',{"list_of_file":list_of_files})
     return render(request,'not_found.html')
 
 
